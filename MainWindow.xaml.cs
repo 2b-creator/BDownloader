@@ -16,7 +16,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using YoutubeDLSharp;
 using System.Threading;
-
+using YoutubeDLSharp.Options;
 
 namespace BDownloader
 {
@@ -169,16 +169,34 @@ namespace BDownloader
         {
             if (ND.IsChecked == true)
             {
+                var options = new OptionSet()
+                {
+                    NoContinue = true,
+                    RestrictFilenames = true,
+                    Format = "best",
+                    RecodeVideo = VideoRecodeFormat.Mp4,
+                    Exec = "echo {}"
+                };
+                var progress = new Progress<DownloadProgress>(p => progressBar.Value = p.Progress);
+                var cts = new CancellationTokenSource();
+                var ytdlProc = new YoutubeDLProcess();
                 YoutubeDL youtubeDL = new YoutubeDL();
                 string fileDirectory = System.IO.Directory.GetCurrentDirectory();
-                string youtubedlFilePath = fileDirectory + "\\youtube-dl.exe";
+                string youtubedlFilePath = fileDirectory + "\\yt-dlp.exe";
                 string ffmpegFilePath = fileDirectory + "\\ffmpeg.exe";
                 Console.WriteLine(ffmpegFilePath);
                 Console.WriteLine(youtubedlFilePath);
                 youtubeDL.YoutubeDLPath = youtubedlFilePath;
                 youtubeDL.FFmpegPath = ffmpegFilePath;
                 youtubeDL.OutputFolder = DownloadPath.Text;
-                var res = await youtubeDL.RunVideoDownload(UrlEntry.Text, "bestvideo+bestaudio/best", YoutubeDLSharp.Options.DownloadMergeFormat.Mp4);
+                string format = "bestvideo+bestaudio/best";
+                //var res = await youtubeDL.RunVideoDownload(UrlEntry.Text, "bestvideo+bestaudio/best", YoutubeDLSharp.Options.DownloadMergeFormat.Mp4);
+                var res = await youtubeDL.RunVideoDownload(UrlEntry.Text, format, progress: progress, ct: cts.Token);
+                //ytdlProc.OutputReceived += (o, d) => Console.WriteLine(d.Data);
+                //ytdlProc.ErrorReceived += (o, d) => Console.WriteLine("ERROR: " + d.Data);
+                //string[] urls = new[] { "https://github.com/ytdl-org/youtube-dl#options" };
+                //await ytdlProc.RunAsync(urls, options);
+
             }
             else if (YD.IsChecked == true)
             {

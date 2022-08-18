@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BDownloader.exe" size="2447328">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BDownloader.exe" size="4785632">
       <assemblyIdentity name="BDownloader" version="0.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2d1WZnJ7fJ9ArPMrWxMAP8sPvq5vvnQk/MM05MCxu54=</dsig:DigestValue>
+        <dsig:DigestValue>qQudDLQrT0H4/0bySDP09+OLytxlGSMQfDPbR61vTOs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
