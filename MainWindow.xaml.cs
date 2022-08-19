@@ -202,7 +202,7 @@ namespace BDownloader
             {
                 YoutubeDL youtubeDL = new YoutubeDL();
                 string fileDirectory = System.IO.Directory.GetCurrentDirectory();
-                string youtubedlFilePath = fileDirectory + "\\youtube-dl.exe";
+                string youtubedlFilePath = fileDirectory + "\\yt-dlp.exe";
                 string ffmpegFilePath = fileDirectory + "\\ffmpeg.exe";
                 youtubeDL.YoutubeDLPath = youtubedlFilePath;
                 youtubeDL.FFmpegPath = ffmpegFilePath;
